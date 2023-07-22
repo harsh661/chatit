@@ -61,7 +61,7 @@ const Form = () => {
         }
       />
 
-      <SocialButton icon={AiOutlineGoogle} onClick={()=>{}}/>
+      <SocialButton icon={AiOutlineGoogle} onClick={()=> socialLogin()}/>
 
       <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
         {variant === "Register" && (
