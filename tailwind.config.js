@@ -17,6 +17,7 @@ module.exports = {
         'alt-gray': '#242424',
         'lighter-gray': '#36373a',
         'lightest-gray': '#a9abad',
+        'dark-text': '#7e7e7e',
         'accent-green': '#258c60',
       }
     },
