@@ -32,7 +32,7 @@ const Input: React.FC<InputProps> = ({
         type={type}
         required
         placeholder={placeholder}
-        className={`p-3 w-full bg-alt-gray rounded-md border border-lighter-gray placeholder:text-lightest-gray outline-none ${disabled && 'bg-lightest-gray opacity-50 cursor-not-allowed'}`}
+        className={`p-3 w-full bg-alt-gray rounded-md border border-lighter-gray placeholder:text-dark-text outline-none ${disabled && 'bg-lightest-gray opacity-50 cursor-not-allowed'}`}
       />
     </div>
   )
