@@ -9,6 +9,7 @@ interface InputProps {
   register: UseFormRegister<FieldValues>
   errors: FieldErrors
   disabled?: boolean
+  placeholder: string
 }
 
 const Input: React.FC<InputProps> = ({
@@ -19,6 +20,7 @@ const Input: React.FC<InputProps> = ({
   errors,
   type = "text",
   disabled,
+  placeholder
 }) => {
   return (
     <div className="flex flex-col gap-2 w-full">
@@ -29,6 +31,7 @@ const Input: React.FC<InputProps> = ({
         id={id}
         type={type}
         required
+        placeholder={placeholder}
         className={`p-3 w-full bg-alt-gray rounded-md border border-lighter-gray placeholder:text-lightest-gray outline-none ${disabled && 'bg-lightest-gray opacity-50 cursor-not-allowed'}`}
       />
     </div>

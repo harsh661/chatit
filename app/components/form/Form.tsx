@@ -65,7 +65,7 @@ const Form = () => {
 
       <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
         {variant === "Register" && (
-          <Input id="name" label="Name" errors={errors} register={register} />
+          <Input placeholder="John doe" id="name" label="Name" errors={errors} register={register} />
         )}
         <Input
           id="email"
@@ -73,6 +73,7 @@ const Form = () => {
           label="Email"
           errors={errors}
           register={register}
+          placeholder="john@email.com"
         />
         <Input
           id="pass"
@@ -80,13 +81,14 @@ const Form = () => {
           label="Password"
           errors={errors}
           register={register}
+          placeholder="•••••••"
         />
         
         <Button type="submit" label={variant}/>
 
         <div className="text-dark-text text-center">
           <span>{variant === 'Login' ? "Don't have an account? ": "Have an account? "}</span>
-          <span onClick={changeVariant} className="underline text-white">{variant === 'Login'? 'Register': 'Login'} now</span>
+          <span onClick={changeVariant} className="underline text-white cursor-pointer">{variant === 'Login'? 'Register': 'Login'} now</span>
         </div>
       </form>
     </div>
