@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useCallback, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import Input from "./Input"
 import Heading from "./Heading"
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
@@ -9,13 +9,22 @@ import SocialButton from "./SocialButton"
 import { AiOutlineGoogle } from "react-icons/ai"
 import axios from "axios"
 import { toast } from "react-hot-toast"
-import { signIn } from "next-auth/react"
+import { signIn, useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
 
 type Variant = "Login" | "Register"
 
 const Form = () => {
+  const session = useSession()
+  const router = useRouter()
   const [variant, setVariant] = useState<Variant>("Login")
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    if (session?.status === "authenticated") {
+      router.push("/user")
+    }
+  }, [session?.status, router])
 
   const changeVariant = useCallback(() => {
     if (variant === "Login") {
@@ -43,6 +52,7 @@ const Form = () => {
     if (variant === "Register") {
       axios
         .post("/api/register", data)
+        .then(() => signIn('credentials', data))
         .catch(() => toast.error("Something went wrong"))
         .finally(() => setIsLoading(false))
     }
@@ -59,6 +69,7 @@ const Form = () => {
 
           if (response?.ok && !response?.error) {
             toast.success("Logged in successfully")
+            router.push("/user")
           }
         })
         .finally(() => setIsLoading(false))
@@ -76,6 +87,7 @@ const Form = () => {
 
         if (response?.ok && !response?.error) {
           toast.success("Logged in successfully")
+          router.push("/user")
         }
       })
       .finally(() => setIsLoading(false))
