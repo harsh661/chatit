@@ -7,7 +7,7 @@ import Navitem from "./sidebar/Navitem"
 const Footer = () => {
   const routes = useRoutes()
   return (
-    <nav className="lg:hidden fixed bottom-0 w-full">
+    <nav className="sm:hidden fixed bottom-0 w-full z-50">
       <ul role="list" className="flex justify-around items-center w-full py-2">
         {routes.map((item) => (
           <Navitem
