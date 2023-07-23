@@ -30,9 +30,10 @@ const Input: React.FC<InputProps> = ({
       <input
         id={id}
         type={type}
+        disabled={disabled}
         placeholder={placeholder}
         {...register(id, {required})}
-        className={`p-3 w-full bg-alt-gray rounded-md border border-lighter-gray placeholder:text-dark-text outline-none ${disabled && 'bg-lightest-gray opacity-50 cursor-not-allowed'} ${errors[id] && 'border border-red-500'}`}
+        className={`p-3 w-full bg-alt-gray rounded-md border border-lighter-gray placeholder:text-dark-text outline-none ${disabled && 'opacity-30 cursor-not-allowed'} ${errors[id] && 'border border-red-500'}`}
       />
     </div>
   )

@@ -10,6 +10,7 @@ import { AiOutlineGoogle } from 'react-icons/ai'
 import axios from "axios"
 import { error } from "console"
 import { toast } from "react-hot-toast"
+import { signIn } from "next-auth/react"
 
 type Variant = "Login" | "Register"
 
@@ -42,11 +43,25 @@ const Form = () => {
 
     if (variant === "Register") {
       axios.post('/api/register', data)
-      .catch(() => toast.success('Something went wrong'))
+      .catch(() => toast.error('Something went wrong'))
+      .finally(() => setIsLoading(false))
     }
 
     if (variant === "Login") {
-      //login
+      signIn('credentials', {
+        ...data,
+        redirect: false
+      })
+      .then((response) => {
+        if(response?.error) {
+          toast.error('Incorrect credentials')
+        }
+
+        if(response?.ok && !response?.error) {
+          toast.success('Logged in successfully')
+        }
+      })
+      .finally(() => setIsLoading(false))
     }
   }
 
@@ -69,12 +84,20 @@ const Form = () => {
 
       <form className="flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
         {variant === "Register" && (
-          <Input placeholder="John doe" id="name" label="Name" errors={errors} register={register} />
+          <Input
+          id="name" 
+          label="Name" 
+          disabled={isLoading}
+          errors={errors} 
+          register={register}
+          placeholder="John doe" 
+          />
         )}
         <Input
           id="email"
           type="email"
           label="Email"
+          disabled={isLoading}
           errors={errors}
           register={register}
           placeholder="john@email.com"
@@ -83,6 +106,7 @@ const Form = () => {
           id="password"
           type="password"
           label="Password"
+          disabled={isLoading}
           errors={errors}
           register={register}
           placeholder="•••••••"
