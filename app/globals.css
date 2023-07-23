@@ -19,6 +19,26 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
-html, body, :root {
+html,
+body,
+:root {
   height: 100%;
+}
+
+.sidebar-width {
+  width: 100%;
+}
+
+@media screen and (min-width: 640px) {
+  .sidebar-width {
+    margin: 0 80px;
+    width: calc(100% - 80px);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .sidebar-width {
+    margin: 0;
+    width: 320px;
+  }
 }
