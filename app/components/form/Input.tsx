@@ -30,9 +30,9 @@ const Input: React.FC<InputProps> = ({
       <input
         id={id}
         type={type}
-        required
         placeholder={placeholder}
-        className={`p-3 w-full bg-alt-gray rounded-md border border-lighter-gray placeholder:text-dark-text outline-none ${disabled && 'bg-lightest-gray opacity-50 cursor-not-allowed'}`}
+        {...register(id, {required})}
+        className={`p-3 w-full bg-alt-gray rounded-md border border-lighter-gray placeholder:text-dark-text outline-none ${disabled && 'bg-lightest-gray opacity-50 cursor-not-allowed'} ${errors[id] && 'border border-red-500'}`}
       />
     </div>
   )

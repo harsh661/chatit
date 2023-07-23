@@ -7,6 +7,9 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import Button from "../Button"
 import SocialButton from "./SocialButton"
 import { AiOutlineGoogle } from 'react-icons/ai'
+import axios from "axios"
+import { error } from "console"
+import { toast } from "react-hot-toast"
 
 type Variant = "Login" | "Register"
 
@@ -38,7 +41,8 @@ const Form = () => {
     setIsLoading(true)
 
     if (variant === "Register") {
-      //register
+      axios.post('/api/register', data)
+      .catch(() => toast.success('Something went wrong'))
     }
 
     if (variant === "Login") {
@@ -76,7 +80,7 @@ const Form = () => {
           placeholder="john@email.com"
         />
         <Input
-          id="pass"
+          id="password"
           type="password"
           label="Password"
           errors={errors}
