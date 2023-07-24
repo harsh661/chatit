@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation"
 import useConversation from "./useConversation"
 import { useMemo } from "react"
 import { signOut } from "next-auth/react"
-import { HiUsers, HiOutlineUsers } from "react-icons/hi"
+import { HiUsers, HiOutlineUsers } from "react-icons/hi2"
 import { HiChatBubbleOvalLeftEllipsis, HiOutlineChatBubbleOvalLeftEllipsis } from "react-icons/hi2"
 import { TbLogout } from "react-icons/tb"
 
@@ -15,10 +15,10 @@ const useRoutes = () => {
     const routes = useMemo(() => [
         {
             label: 'Chats',
-            href: '/chat',
+            href: '/chats',
             icon: HiChatBubbleOvalLeftEllipsis,
             inactiveIcon: HiOutlineChatBubbleOvalLeftEllipsis,
-            active: pathname === '/chat' || !!conversationId
+            active: pathname === '/chats' || !!conversationId
         },
         {
             label: 'User',
