@@ -20,7 +20,7 @@ const UserContainer: React.FC<UserContainerProps> = ({ data }) => {
   }, [data, router])
 
   return (
-    <div onClick={handleClick} className='flex gap-5 p-3 border-b border-lighter-gray'>
+    <div onClick={handleClick} className='flex gap-5 sm:px-3 py-3 sm:hover:bg-lightest-gray/10 cursor-pointer rounded-md'>
         <Avatar user={data}/>
         <div className='flex flex-col justify-between'>
             <span className='text-sm font-bold'>{data.name}</span>
