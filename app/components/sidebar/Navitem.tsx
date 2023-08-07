@@ -20,7 +20,7 @@ const Navitem: React.FC<NavItemProps> = ({
   }
 
   return (
-    <li onClick={handleClick} className={`${active ? 'text-accent-green lg:bg-transparent bg-accent-green/10 rounded-lg': 'text-white'} p-2`}>
+    <li onClick={handleClick} className={`${active ? 'text-white lg:bg-transparent bg-accent-green/10 rounded-lg': 'text-lightest-gray'} p-2`}>
       <Link href={href}>
         {active ? <Icon size={25}/>: <InactiveIcon size={25}/>}
       </Link>
