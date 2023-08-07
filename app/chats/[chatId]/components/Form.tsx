@@ -6,6 +6,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import { BiLink } from "react-icons/bi"
 import { FiSend } from "react-icons/fi"
 import MessageInput from "./MessageInput"
+import { CldUploadButton } from "next-cloudinary"
 
 const Form = () => {
   const { conversationId } = useConversation()
@@ -26,11 +27,24 @@ const Form = () => {
     axios.post("/api/messages", { ...data, conversationId })
   }
 
+  const handleUpload = (result: any) => {
+    axios.post("/api/messages", {
+      image: result?.info?.secure_url,
+      conversationId,
+    })
+  }
+
   return (
     <div className="p-3 flex items-center w-full bg-main-gray">
-      <div className="bg-white text-black p-2 rounded-full">
-        <BiLink size={20} />
-      </div>
+      <CldUploadButton
+        options={{ maxFiles: 1 }}
+        onUpload={() => {}}
+        uploadPreset="ubwtuubf"
+      >
+        <div className="bg-white text-black p-2 rounded-full">
+          <BiLink size={20} />
+        </div>
+      </CldUploadButton>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex items-center gap-2"
