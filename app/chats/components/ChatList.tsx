@@ -31,7 +31,7 @@ const ChatList: FC<UserListProps> = ({ chats }) => {
             ALL MESSAGES
           </span>
           {chats.map((chat) => (
-            <ChatContainer data={chat} selected={conversationId === chat.id} />
+            <ChatContainer key={chat.id} data={chat} selected={conversationId === chat.id} />
           ))}
         </div>
       </div>
