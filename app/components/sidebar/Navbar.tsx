@@ -12,6 +12,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const routes = useRoutes()
+
   return (
     <div className="hidden bg-main-gray sm:flex sm:fixed sm:left-0 sm:inset-y-0 sm:w-20 pt-10 pb-5 justify-center">
       <nav className="flex flex-col justify-between items-center">
