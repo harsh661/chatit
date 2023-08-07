@@ -3,7 +3,9 @@
 import Avatar from "@/app/components/Avatar"
 import useGetUser from "@/app/hooks/useGetUser"
 import { Conversation, User } from "@prisma/client"
+import Link from "next/link"
 import { useMemo } from "react"
+import { IoIosArrowBack } from 'react-icons/io'
 
 interface HeaderProps {
   chat: Conversation & {
@@ -23,7 +25,10 @@ const Header: React.FC<HeaderProps> = ({ chat }) => {
   },[])
 
   return (
-    <div className="px-5 py-3 border-b border-lighter-gray">
+    <div className="px-5 py-3 border-b border-lighter-gray flex items-center">
+      <Link href={'/chats'} className="mr-5 lg:hidden">
+        <IoIosArrowBack size={25} />
+      </Link>
       <div className="flex items-center gap-5">
         <Avatar user={otherUser} />
         <div>

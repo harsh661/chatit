@@ -10,7 +10,7 @@ const useConversation = () => {
         }
 
         return params?.chatId as string
-    }, [params?.conversationId])
+    }, [params?.chatId])
 
     const isOpen = useMemo(() => !!conversationId, [conversationId])
 
