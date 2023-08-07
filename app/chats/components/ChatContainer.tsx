@@ -1,7 +1,8 @@
 import Avatar from "@/app/components/Avatar"
 import useGetUser from "@/app/hooks/useGetUser"
 import { ChatType } from "@/app/types/ChatType"
-import React from "react"
+import { useRouter } from "next/navigation"
+import React, { useCallback } from "react"
 
 interface ChatContainerProps {
   data: ChatType
@@ -9,9 +10,15 @@ interface ChatContainerProps {
 }
 
 const ChatContainer: React.FC<ChatContainerProps> = ({ data, selected }) => {
+  const router = useRouter()
   const otherUser = useGetUser(data)
+
+  const handleClick = useCallback(() => {
+    router.push(`/chats/${data.id}`)
+  }, [data, router])
+
   return (
-    <div
+    <div onClick={handleClick}
       className="flex gap-5 sm:px-3 py-3 sm:hover:bg-lightest-gray/10 cursor-pointer rounded-md"
     >
       <Avatar user={otherUser}/>
