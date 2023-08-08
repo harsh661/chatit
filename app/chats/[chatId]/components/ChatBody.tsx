@@ -21,7 +21,7 @@ const ChatBody: React.FC<ChatBodyProps> = ({ initialMessages }) => {
   }, [conversationId])
 
   return (
-    <div className="flex-1 overflow-y-auto flex flex-col p-2 gap-2">
+    <div className="flex-1 overflow-y-auto flex flex-col p-2 sm:p-5 lg:p-10 gap-2">
       {messages.map((message, index) => (
         <MessageBox
           isLast={index === messages.length - 1}
