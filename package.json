@@ -19,6 +19,7 @@
     "bcrypt": "^5.1.0",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.11",
+    "moment": "^2.29.4",
     "next": "13.4.11",
     "next-auth": "^4.22.3",
     "next-cloudinary": "^4.17.1",
