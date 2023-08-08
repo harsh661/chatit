@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react"
 import MessageBox from "./MessageBox"
 import useConversation from "@/app/hooks/useConversation"
 import axios from "axios"
+import { pusherClient } from "@/app/libs/pusher"
+import { find } from 'lodash'
 
 interface ChatBodyProps {
   initialMessages: MessageType[]
@@ -18,6 +20,33 @@ const ChatBody: React.FC<ChatBodyProps> = ({ initialMessages }) => {
 
   useEffect(() => {
     axios.post(`/api/chats/${conversationId}/seen`)
+  }, [conversationId])
+
+  useEffect(() => {
+    pusherClient.subscribe(conversationId)
+    slideRef?.current?.scrollIntoView()
+
+    const messageHandler = (message: MessageType) => {
+      axios.post(`/api/chats/${conversationId}/seen`);
+
+      setMessages((current) => {
+        if (find(current, { id: message.id })) {
+          return current;
+        }
+
+        return [...current, message]
+      });
+      
+      slideRef?.current?.scrollIntoView();
+    }
+
+    pusherClient.bind('messages:new', messageHandler)
+
+    return () => {
+      pusherClient.unsubscribe(conversationId)
+      pusherClient.unbind('messages:new', messageHandler)
+    }
+
   }, [conversationId])
 
   return (
