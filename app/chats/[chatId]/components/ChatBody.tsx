@@ -1,8 +1,10 @@
 "use client"
 
 import { MessageType } from "@/app/types/ChatType"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import MessageBox from "./MessageBox"
+import useConversation from "@/app/hooks/useConversation"
+import axios from "axios"
 
 interface ChatBodyProps {
   initialMessages: MessageType[]
@@ -11,6 +13,12 @@ interface ChatBodyProps {
 const ChatBody: React.FC<ChatBodyProps> = ({ initialMessages }) => {
   const [messages, setMessages] = useState(initialMessages)
   const slideRef = useRef<HTMLDivElement>(null)
+
+  const {conversationId} = useConversation()
+
+  useEffect(() => {
+    axios.post(`/api/chats/${conversationId}/seen`)
+  }, [conversationId])
 
   return (
     <div className="flex-1 overflow-y-auto flex flex-col p-2 gap-2">

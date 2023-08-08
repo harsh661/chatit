@@ -3,13 +3,14 @@ import { MessageType } from "@/app/types/ChatType"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
 import useWhatsAppTimeFormat from "@/app/hooks/useGetTime"
+import {RiCheckFill, RiCheckDoubleFill} from 'react-icons/ri'
 
 interface MessageBoxProps {
   isLast: boolean
   data: MessageType
 }
 
-const MessageBox: React.FC<MessageBoxProps> = ({ data }) => {
+const MessageBox: React.FC<MessageBoxProps> = ({ data, isLast }) => {
   const session = useSession()
 
   const isMyMessage = data?.sender?.email === session?.data?.user?.email
@@ -31,7 +32,13 @@ const MessageBox: React.FC<MessageBoxProps> = ({ data }) => {
             <Image src={data.image} width={500} height={500} alt="message" className="rounded-2xl"/>
         )}
       </div>
-      <span className="text-xs text-lightest-gray">{sentAt}</span>
+      <span className="text-xs text-lightest-gray flex items-center gap-1">{sentAt}
+          <span>
+            {isLast && isMyMessage && peopleSeen.length > 0 && (
+              <RiCheckDoubleFill size={15}/>
+            )}
+          </span>
+      </span>
     </div>
   )
 }
