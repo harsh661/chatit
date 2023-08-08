@@ -3,10 +3,6 @@ import getCurrentUser from "./getCurrentUser"
 
 const getMessages = async( chatId: string ) => {
     try {
-        const currentUser = await getCurrentUser()
-
-        if(!currentUser?.email) return null
-
         const chats = prisma.message.findMany({
             where: {
                 conversationId: chatId
@@ -21,9 +17,8 @@ const getMessages = async( chatId: string ) => {
         })
 
         return chats
-
     } catch (error) {
-        return null
+        return []
     }
 }
 
