@@ -9,7 +9,7 @@ const getMessages = async( chatId: string ) => {
 
         const chats = prisma.message.findMany({
             where: {
-                id: chatId
+                conversationId: chatId
             },
             include: {
                 sender: true,
