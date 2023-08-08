@@ -20,9 +20,8 @@ const Header: React.FC<HeaderProps> = ({ chat }) => {
     if(chat.isGroup) {
         return `${chat.users.length} participants`
     }
-
     return 'Online'
-  },[])
+  },[chat])
 
   return (
     <div className="px-5 py-3 border-b border-lighter-gray flex items-center">
