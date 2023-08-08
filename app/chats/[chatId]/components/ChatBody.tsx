@@ -21,6 +21,7 @@ const ChatBody: React.FC<ChatBodyProps> = ({ initialMessages }) => {
           data={message}
         />
       ))}
+      <div ref={slideRef} className="pt-24"/>
     </div>
   )
 }
