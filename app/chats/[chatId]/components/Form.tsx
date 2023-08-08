@@ -38,7 +38,7 @@ const Form = () => {
     <div className="p-3 flex items-center w-full bg-main-gray">
       <CldUploadButton
         options={{ maxFiles: 1 }}
-        onUpload={() => {}}
+        onUpload={handleUpload}
         uploadPreset="ubwtuubf"
       >
         <div className="bg-white text-black p-2 rounded-full">
