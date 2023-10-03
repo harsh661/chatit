@@ -24,7 +24,7 @@ const UserContainer: React.FC<UserContainerProps> = ({ data }) => {
         <Avatar user={data}/>
         <div className='flex flex-col justify-between'>
             <span className='text-sm font-bold'>{data.name}</span>
-            <span className='text-xs text-dark-text font-medium'>Typing</span>
+            <span className='text-xs text-dark-text font-medium'>{data.email}</span>
         </div>
     </div>
   )
