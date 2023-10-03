@@ -1,7 +1,8 @@
-import React from "react"
+import React, { Suspense } from "react"
 import Sidebar from "../components/sidebar/Sidebar"
 import getUsers from "../actions/getUsers"
 import UserList from "./components/UserList"
+import UserLoader from "../components/UserLoader"
 
 export default async function UserLayour({
   children,
@@ -12,7 +13,9 @@ export default async function UserLayour({
   const users = await getUsers()
   return (
     <Sidebar>
-      <UserList users={users}/>
+      <Suspense fallback={<UserLoader />}>
+        <UserList users={users}/>
+      </Suspense>
       <div className="h-full">{children}</div>
     </Sidebar>
   )

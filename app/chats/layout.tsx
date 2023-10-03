@@ -1,6 +1,8 @@
+import { Suspense } from "react"
 import getChats from "../actions/getChats"
 import Sidebar from "../components/sidebar/Sidebar"
 import ChatList from "./components/ChatList"
+import UserLoader from "../components/UserLoader"
 
 export default async function ChatLayout({
   children,
@@ -10,7 +12,9 @@ export default async function ChatLayout({
   const chats = await getChats()
   return (
     <Sidebar>
-      <ChatList chats={chats} />
+      <Suspense fallback={<UserLoader />}>
+        <ChatList chats={chats} />
+      </Suspense>
       <div className="h-full">{children}</div>
     </Sidebar>
   )
