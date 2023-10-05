@@ -4,18 +4,18 @@ import React from "react"
 
 interface AvatarProps {
   user: User
+  size?: number
 }
 
-const Avatar: React.FC<AvatarProps> = ({ user }) => {
+const Avatar: React.FC<AvatarProps> = ({ user, size }) => {
   return (
-    <div className="w-10 h-10 relative">
-      <span className="absolute bg-hover-green border-2 border-main-gray rounded-full w-3 h-3 z-10 right-0 bottom-0" />
+    <div className="">
       {user && (
         <Image
-          width={40}
-          height={40}
+          width={size ? size : 40}
+          height={size ? size : 40}
           src={user.image || "/user.png"}
-          alt={user.name || 'user'}
+          alt={user.name || "user"}
           className="rounded-full"
         />
       )}
