@@ -1,5 +1,6 @@
 import { User } from "@prisma/client"
 import Image from "next/image"
+import Link from "next/link"
 import React from "react"
 
 interface AvatarProps {
@@ -9,7 +10,7 @@ interface AvatarProps {
 
 const Avatar: React.FC<AvatarProps> = ({ user, size }) => {
   return (
-    <div className="">
+    <Link href={`/profile/${user.id}`}>
       {user && (
         <Image
           width={size ? size : 40}
@@ -19,7 +20,7 @@ const Avatar: React.FC<AvatarProps> = ({ user, size }) => {
           className="rounded-full"
         />
       )}
-    </div>
+    </Link>
   )
 }
 
