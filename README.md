@@ -2,6 +2,11 @@
 
 ChatIt is a real-time chat application built with Next.js, allowing users to have seamless conversations using text and multimedia messages. This app is designed to provide an easy and engaging chat experience for both individuals and groups.
 
+## Wanna test?
+
+Email: test@user.com
+Password: testuser1234
+
 ## Features
 
 - Real-time chat functionality using WebSockets.
